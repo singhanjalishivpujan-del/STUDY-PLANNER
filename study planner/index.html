@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📚 Smart Study Planner</h1>
+
+    <div class="quote">
+        "Success is the sum of small efforts repeated daily."
+    </div>
+
+    <div class="task-box">
+        <input type="text" id="taskInput" placeholder="Enter Study Task">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <h3>Progress</h3>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">
+            0%
+        </div>
+    </div>
+
+    <button onclick="toggleDarkMode()" class="dark-btn">
+        🌙 Dark Mode
+    </button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
