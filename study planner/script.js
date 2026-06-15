@@ -66,14 +66,14 @@ function toggleDarkMode() {
         btn.innerHTML = "🌙 Dark Mode";
     }
 }
-// Save tasks
 function saveTasks() {
+    let taskList = document.getElementById("taskList");
     localStorage.setItem("tasks", taskList.innerHTML);
 }
-
-// Load tasks
 window.onload = function () {
+    let taskList = document.getElementById("taskList");
+
     if (localStorage.getItem("tasks")) {
         taskList.innerHTML = localStorage.getItem("tasks");
     }
-};
+}
