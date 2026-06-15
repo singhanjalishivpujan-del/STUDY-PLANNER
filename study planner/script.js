@@ -73,7 +73,51 @@ function saveTasks() {
 window.onload = function () {
     let taskList = document.getElementById("taskList");
 
-    if (localStorage.getItem("tasks")) {
-        taskList.innerHTML = localStorage.getItem("tasks");
-    }
+    taskList.innerHTML = localStorage.getItem("tasks") || "";
+
+    totalTasks = taskList.getElementsByTagName("li").length;
+
+    let checkboxes = taskList.querySelectorAll("input[type='checkbox']");
+    completedTasks = 0;
+
+    checkboxes.forEach(function(box){
+        if(box.checked) completedTasks++;
+
+        box.onchange = function(){
+            if(this.checked){
+                completedTasks++;
+            } else {
+                completedTasks--;
+            }
+            updateProgress();
+            saveTasks();
+        };
+    });
+
+    updateProgress();
+}
+function clearTasks() {
+    localStorage.removeItem("tasks");
+    document.getElementById("taskList").innerHTML = "";
+    totalTasks = 0;
+    completedTasks = 0;
+    updateProgress();
+}
+let time = 1500;
+
+function startTimer(){
+    let timer = setInterval(function(){
+        let min = Math.floor(time/60);
+        let sec = time%60;
+
+        document.getElementById("timer").innerHTML =
+        min + ":" + (sec<10?"0":"") + sec;
+
+        time--;
+
+        if(time<0){
+            clearInterval(timer);
+            alert("Focus Session Completed!");
+        }
+    },1000);
 }
