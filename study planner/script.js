@@ -10,6 +10,7 @@ function addTask() {
     if (task === "") return;
 
     totalTasks++;
+    saveTasks();
 
     let li = document.createElement("li");
 
@@ -26,6 +27,7 @@ function addTask() {
         }
 
         updateProgress();
+        saveTasks();
     };
 
     li.appendChild(checkbox);
@@ -33,7 +35,7 @@ function addTask() {
     li.append(task);
 
     document.getElementById("taskList").appendChild(li);
-
+    saveTasks();
     taskInput.value = "";
 
     updateProgress();
@@ -64,3 +66,14 @@ function toggleDarkMode() {
         btn.innerHTML = "🌙 Dark Mode";
     }
 }
+// Save tasks
+function saveTasks() {
+    localStorage.setItem("tasks", taskList.innerHTML);
+}
+
+// Load tasks
+window.onload = function () {
+    if (localStorage.getItem("tasks")) {
+        taskList.innerHTML = localStorage.getItem("tasks");
+    }
+};
